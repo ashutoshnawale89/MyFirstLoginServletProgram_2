@@ -24,8 +24,11 @@ public class LoginServlet extends HttpServlet {
         String nameRegex = "[A-Z]{1}[a-z]{2,}";
         Pattern npattern = Pattern.compile(nameRegex);
         Matcher fmatcher = npattern.matcher(user);
-
-        if(fmatcher.matches() {
+        //password
+        String passwordRegex= "^(?=.*[@!#$%&*?])(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9@!#$%&*?]{8,}$";
+        Pattern pwdPattern = Pattern.compile(passwordRegex);
+        Matcher pmatcher = pwdPattern.matcher(pwd);
+        if(fmatcher.matches() && pmatcher.matches()) {
             if (userID.equals(user) && password.equals(pwd)) {
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("LoginSuccess.jsp").forward(request, response);
